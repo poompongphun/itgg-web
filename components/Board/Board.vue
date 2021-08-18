@@ -32,7 +32,7 @@
             >
               <v-list-item-avatar>
                 <v-img v-if="i < 3" :src="getImages(i)"></v-img>
-                <h2 v-else>{{ i + 1 }}</h2>
+                <h2 v-else class="other-num">{{ i + 1 }}</h2>
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -63,10 +63,11 @@
               :key="player.std_id"
               class="mx-2 my-1 rounded-lg"
               style="background-color: rgba(255, 255, 255, 0.3)"
+              @click="showPlayer(player)"
             >
               <v-list-item-avatar tile>
                 <v-img v-if="i < 3" :src="getImages(i)"></v-img>
-                <h2 v-else>{{ i + 1 }}</h2>
+                <h2 v-else class="other-num">{{ i + 1 }}</h2>
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -80,13 +81,15 @@
         </v-list>
       </v-tab-item>
     </v-tabs-items>
+    <PlayerDialog ref="playerDialog" />
   </v-card>
 </template>
 
 <script>
-import Chart from '~/components/Board/Chart.vue'
+import Chart from '~/components/Board/Chart'
+import PlayerDialog from '~/components/Board/PlayerDialog'
 export default {
-  components: { Chart },
+  components: { Chart, PlayerDialog },
   props: {
     items: {
       type: Array,
@@ -118,11 +121,11 @@ export default {
       else return '/images/medal/medal-bronze.png'
     },
     getColor(gate, code) {
-      if (gate === 'and') return code ? 'rgba(1, 97, 242, 0.8)' : 'blue'
-      else if (gate === 'or') return code ? 'rgba(32, 232, 24, 0.8)' : 'green'
-      else if (gate === 'nor') return code ? 'rgba(242, 0, 0, 0.8)' : 'red'
+      if (gate === 'and') return code ? 'rgba(50, 115, 219, 0.9)' : 'blue'
+      else if (gate === 'or') return code ? 'rgba(0, 171, 0, 0.9)' : 'green'
+      else if (gate === 'nor') return code ? 'rgba(219, 46, 28, 0.9)' : 'red'
       else if (gate === 'not')
-        return code ? 'rgba(143, 72, 239, 0.8)' : 'purple'
+        return code ? 'rgba(92, 45, 122, 0.9)' : 'purple'
     },
     getCollection(gate) {
       const gateLabel = []
@@ -146,6 +149,10 @@ export default {
         ],
       }
     },
+    showPlayer(player) {
+      console.log(player)
+      this.$refs.playerDialog.openDialog(player)
+    },
   },
 }
 </script>
@@ -168,6 +175,13 @@ export default {
   justify-content: center;
   align-items: center;
   height: 40vh;
+}
+.other-num {
+  width: 30px;
+  background: rgba(128, 128, 128, 0.3);
+  height: 30px;
+  border-radius: 100px;
+  color: rgb(70, 70, 70);
 }
 @media screen and (max-width: 520px) {
   .gate-chart {
