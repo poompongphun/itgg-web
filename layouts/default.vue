@@ -11,11 +11,13 @@
       :dark="$vuetify.theme.dark"
     >
       <v-container class="pa-0 fill-height">
-        <v-toolbar-title @click="$router.push('/')">ITGG</v-toolbar-title>
+        <v-btn aria-label="itggLogo" icon @click="$router.push('/')">
+          <v-img src="/logo.png" max-width="30"></v-img>
+        </v-btn>
         <v-spacer></v-spacer>
-        <!-- <v-btn icon>
+        <v-btn icon to="/signin">
           <v-icon>mdi-account</v-icon>
-        </v-btn> -->
+        </v-btn>
       </v-container>
     </v-app-bar>
     <Nuxt />
