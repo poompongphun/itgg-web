@@ -1,0 +1,10 @@
+{
+  "name": "itgg",
+  "short_name": "itgg",
+  "description": "## Build Setup",
+  "icons": [],
+  "start_url": "/itgg-web/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en"
+}
