@@ -116,9 +116,9 @@ export default {
       this.players = player
     },
     getImages(num) {
-      if (num === 0) return '/images/medal/medal-gold.png'
-      else if (num === 1) return '/images/medal/medal-silver.png'
-      else return '/images/medal/medal-bronze.png'
+      if (num === 0) return require('~/assets/images/medal/medal-gold.png')
+      else if (num === 1) return require('~/assets/images/medal/medal-silver.png')
+      else return require('~/assets/images/medal/medal-bronze.png')
     },
     getColor(gate, code) {
       if (gate === 'and') return code ? 'rgba(50, 115, 219, 0.9)' : 'blue'

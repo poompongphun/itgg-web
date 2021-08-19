@@ -12,7 +12,7 @@
     >
       <v-container class="pa-0 fill-height">
         <v-btn aria-label="itggLogo" icon @click="$router.push('/')">
-          <v-img src="/logo.png" max-width="30"></v-img>
+          <v-img :src="require('~/assets/logo.png')" max-width="30"></v-img>
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn icon to="/signin">
