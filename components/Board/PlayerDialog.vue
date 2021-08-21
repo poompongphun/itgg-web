@@ -17,7 +17,10 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <div class="text-center">
-        <h2 class="py-4">{{ playerData.name }}</h2>
+        <h2 class="py-4">
+          {{ playerData.name }}
+          <v-chip>IT {{playerData.year}}</v-chip>
+          </h2>
         <!-- <v-avatar class="my-3" size="150" color="grey">
           <v-img src="https://www.blexar.com/avatar.png" alt="alt" />
         </v-avatar> -->
@@ -50,7 +53,7 @@
                 </v-list-item-content>
                 <v-list-item-action>
                   <span :class="`${log.coin >= 0 ? 'green' : 'red'}--text`">
-                    {{ `${log.coin >= 0 ? '+' : '-'}` + log.coin }} Tokens
+                    {{ `${log.coin >= 0 ? '+' : ''}` + log.coin }} Tokens
                   </span>
                 </v-list-item-action>
               </v-list-item>
