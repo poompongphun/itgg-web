@@ -123,7 +123,7 @@ export default {
       this.players = []
       this.tab = 1
       const player = await this.$axios.$get(
-        `https://itgg.herokuapp.com/players?gate=${gate}&limit=20`,
+        `https://itgg.herokuapp.com/players?gate=${gate}&limit=1000`,
         { progress: false }
       )
       this.players = player
