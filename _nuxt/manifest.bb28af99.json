@@ -1,7 +1,7 @@
 {
-  "name": "itgg",
-  "short_name": "itgg",
-  "description": "## Build Setup",
+  "name": "ITGG",
+  "short_name": "ITGG",
+  "description": "InfoTech GateGame",
   "icons": [],
   "start_url": "/itgg-web/?standalone=true",
   "display": "standalone",
