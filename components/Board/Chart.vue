@@ -1,11 +1,16 @@
 <template>
-  <client-only>
-    <doughnut-chart
-      :chart-data="collection"
-      :options="options"
-      :height="height"
-    ></doughnut-chart>
-  </client-only>
+  <div>
+    <div v-if="images !== ''" class="chart-img">
+      <v-img class="mt-2" :src="images" height="100%" contain></v-img>
+    </div>
+    <client-only>
+      <doughnut-chart
+        :chart-data="collection"
+        :options="options"
+        :height="height"
+      ></doughnut-chart>
+    </client-only>
+  </div>
 </template>
 
 <script>
@@ -40,6 +45,11 @@ export default {
         },
       }),
     },
+    images: {
+      type: String,
+      require: false,
+      default: '',
+    },
   },
   data: () => ({
     collection: {
@@ -73,3 +83,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.chart-img {
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  padding: 0 32%;
+}
+</style>

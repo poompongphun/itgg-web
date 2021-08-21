@@ -29,10 +29,10 @@
             height="100%"
             style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important"
           >
-            <!-- <v-img
-              src="/images/space.png"
-              height="525"
-            ></v-img> -->
+            <v-img
+              :src="require('~/assets/images/space/bg.jpg')"
+              height="580"
+            ></v-img>
           </v-card>
         </v-col>
       </v-row>

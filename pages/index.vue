@@ -1,32 +1,61 @@
 <template>
-  <v-row class="px-1 background" justify="center" align="center" no-gutters>
-    <v-col class="fill-height">
-      <Board :items="items" />
-    </v-col>
-  </v-row>
+  <div>
+    <div class="background2"></div>
+    <div class="background"></div>
+    <v-row justify="center" align="center" no-gutters>
+      <v-col class="fill-height">
+        <Board :items="items" />
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
 import Board from '~/components/Board/Board'
 export default {
   components: { Board },
-  data: () => ({
-    items: [
-      { gate: 'nor', tokens: 20 },
-      { gate: 'or', tokens: 10 },
-      { gate: 'not', tokens: 7 },
-      { gate: 'and', tokens: 5 },
-    ],
-  }),
+  async asyncData({ $axios }) {
+    const gate = await $axios.$get('https://itgg.herokuapp.com/')
+    return { items: gate }
+  },
   methods: {},
 }
 </script>
 
 <style lang="scss" scoped>
-// .background {
-// background-image: url('/images/background.jpg');
-// background-size: cover;
-// background-repeat: no-repeat;
-// background-position: center center;
-// }
+.background {
+  background-image: url('/BG2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  height: 80vh;
+  width: 100%;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(87, 0, 131, 0.8) 0%,
+      rgba(255, 255, 255, 0) 15%,
+      rgba(255, 255, 255, 0) 85%,
+      rgba(22, 153, 172, 1) 100%
+    );
+    z-index: 0;
+  }
+}
+.background2 {
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 153, 172, 1) 80%,
+    rgba(22, 152, 172, 0.6) 100%,
+  );
+  position: absolute;
+  width: 100%;
+  // margin-top: 80vh;
+  height: 100%;
+}
 </style>

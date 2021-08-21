@@ -83,7 +83,7 @@ export default {
     },
     getColor(gate, code) {
       if (gate === 'and') return code ? 'rgba(50, 115, 219, 0.1)' : 'blue'
-      else if (gate === 'or') return code ? 'rgba(0, 171, 0, 1)' : 'green'
+      else if (gate === 'or') return code ? 'rgba(139, 195, 74, 1)' : 'green'
       else if (gate === 'nor') return code ? 'rgba(219, 46, 28, 1)' : 'red'
       else if (gate === 'not')
         return code ? 'rgba(92, 45, 122, 1)' : 'purple'
