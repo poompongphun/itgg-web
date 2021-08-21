@@ -2,6 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 const title = process.env.npm_package_name || ''
 const description = process.env.npm_package_description || ''
+const images = '/background.jpg'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -35,6 +36,21 @@ export default {
         hid: 'og:description',
         property: 'og:description',
         content: description,
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: images,
+      },
+      {
+        hid: 'og:image:secure_url',
+        property: 'og:image:secure_url',
+        content: images,
+      },
+      {
+        hid: 'og:image:alt',
+        property: 'og:image:alt',
+        content: title,
       },
     ],
     link: [
