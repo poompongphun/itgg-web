@@ -1,7 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
-const title = process.env.npm_package_name || ''
-const description = process.env.npm_package_description || ''
+const title = process.env.npm_package_name || 'ITGG'
+const description = process.env.npm_package_description || 'Infotech Gate Game | IT KMITL'
 const images = 'https://poompongphun.github.io/itgg-web/background.jpg'
 
 export default {
