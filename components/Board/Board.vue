@@ -51,9 +51,13 @@
                   </v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-chip color="rgb(120, 120, 120)" outlined>
+                  <v-chip
+                    color="rgb(120, 120, 120)"
+                    outlined
+                    style="cursor: pointer"
+                  >
                     <span>{{ item.player }}</span>
-                    <v-icon class="ml-1" size="20">mdi-account</v-icon>
+                    <v-icon class="ml-1">mdi-account</v-icon>
                   </v-chip>
                 </v-list-item-action>
               </v-list-item>

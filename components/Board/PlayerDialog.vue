@@ -19,8 +19,12 @@
       <div class="text-center">
         <h2 class="py-4">
           {{ playerData.name }}
-          <v-chip>IT {{playerData.year}}</v-chip>
-          </h2>
+          <br>
+          <v-chip>IT {{ playerData.year }}</v-chip>
+          <v-chip v-if="playerData.discord_id !== ''" color="success" outlined>
+            Verified
+          </v-chip>
+        </h2>
         <!-- <v-avatar class="my-3" size="150" color="grey">
           <v-img src="https://www.blexar.com/avatar.png" alt="alt" />
         </v-avatar> -->
@@ -88,8 +92,7 @@ export default {
       if (gate === 'and') return code ? 'rgba(50, 115, 219, 0.1)' : 'blue'
       else if (gate === 'or') return code ? 'rgba(139, 195, 74, 1)' : 'green'
       else if (gate === 'nor') return code ? 'rgba(219, 46, 28, 1)' : 'red'
-      else if (gate === 'not')
-        return code ? 'rgba(92, 45, 122, 1)' : 'purple'
+      else if (gate === 'not') return code ? 'rgba(92, 45, 122, 1)' : 'purple'
     },
   },
 }
