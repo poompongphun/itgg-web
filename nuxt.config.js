@@ -1,7 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 const title = process.env.npm_package_name || 'ITGG'
-const description = process.env.npm_package_description || 'Infotech Gate Game | IT KMITL'
+const description =
+  process.env.npm_package_description || 'Infotech Gate Game | IT KMITL'
 const images = 'https://poompongphun.github.io/itgg-web/background.jpg'
 
 export default {
@@ -93,13 +94,17 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: { baseURL: process.env.API_URI || '' },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
       lang: 'en',
     },
+  },
+
+  env: {
+    baseURL: process.env.API_URI || '',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

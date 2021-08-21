@@ -41,7 +41,7 @@ const image = window.location.href + 'background.jpg'
 export default {
   components: { Board },
   async asyncData({ $axios, req }) {
-    const gate = await $axios.$get('https://itgg.herokuapp.com/')
+    const gate = await $axios.$get('/')
     gate.sort((a, b) => b.coin - a.coin)
     return { items: gate }
   },
