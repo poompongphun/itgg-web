@@ -3,6 +3,11 @@
     <div v-if="images !== ''" class="chart-img">
       <v-img class="mt-2" :src="images" height="100%" contain></v-img>
     </div>
+    <!-- <div v-if="images !== ''" class="chart-img">
+      <div class="crop">
+        <v-img class="img" :src="images" min-width="100%" aspect-ratio="1" contain />
+      </div>
+    </div> -->
     <client-only>
       <doughnut-chart
         :chart-data="collection"
@@ -84,12 +89,24 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .chart-img {
   position: absolute;
   pointer-events: none;
   width: 100%;
   height: 100%;
-  padding: 0 32%;
+  padding: 0 31%;
+  z-index: 1;
+  .crop {
+    max-width: 85%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  .img {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 100%;
+  }
 }
 </style>

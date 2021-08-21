@@ -4,7 +4,7 @@
     <div class="background"></div>
     <v-row justify="center" align="center" no-gutters>
       <v-col class="fill-height">
-        <Board :items="items" />
+        <Board :items="items" :images="gateImg" />
       </v-col>
     </v-row>
   </div>
@@ -16,9 +16,24 @@ export default {
   components: { Board },
   async asyncData({ $axios }) {
     const gate = await $axios.$get('https://itgg.herokuapp.com/')
+    gate.sort((a, b) => b.coin - a.coin)
     return { items: gate }
   },
-  methods: {},
+  data: () => ({
+    gateImg: '',
+  }),
+  mounted() {
+    this.gateImg = this.gateImages('not')
+    // this.gateImg = this.gateImages(this.items[0].name)
+  },
+  methods: {
+    gateImages(gate) {
+      if (gate === 'and') return '/gate/and.png'
+      else if (gate === 'or') return '/gate/or.png'
+      else if (gate === 'nor') return '/gate/nor.png'
+      else if (gate === 'not') return '/gate/not.png'
+    },
+  },
 }
 </script>
 
@@ -51,7 +66,7 @@ export default {
   background: linear-gradient(
     to bottom,
     rgba(22, 153, 172, 1) 80%,
-    rgba(22, 152, 172, 0.6) 100%,
+    rgba(22, 152, 172, 0.6) 100%
   );
   position: absolute;
   width: 100%;

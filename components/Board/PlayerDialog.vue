@@ -17,7 +17,7 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <div class="text-center">
-        <h2 class="py-4">{{ playerData.name }} ({{ playerData.nickname }})</h2>
+        <h2 class="py-4">{{ playerData.name }}</h2>
         <!-- <v-avatar class="my-3" size="150" color="grey">
           <v-img src="https://www.blexar.com/avatar.png" alt="alt" />
         </v-avatar> -->

@@ -39,11 +39,11 @@
               >
                 <v-list-item-avatar>
                   <v-img v-if="i < 3" :src="getImages(i)"></v-img>
-                  <h2 v-else class="other-num">{{ i + 1 }}</h2>
+                  <span v-else class="other-num">{{ i + 1 }}</span>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                  <h3 :class="`${getColor(item.gate, false)}--text`">
+                  <h3 :class="`${getColor(item.name, false)}--text`">
                     {{ item.name.toUpperCase() }}
                   </h3>
                   <v-list-item-subtitle>
@@ -51,7 +51,7 @@
                   </v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-icon>mdi-arrow-right</v-icon>
+                  <v-icon>mdi-chevron-right</v-icon>
                 </v-list-item-action>
               </v-list-item>
             </template>
@@ -74,7 +74,7 @@
               >
                 <v-list-item-avatar tile>
                   <v-img v-if="i < 3" :src="getImages(i)"></v-img>
-                  <h2 v-else class="other-num">{{ i + 1 }}</h2>
+                  <span v-else class="other-num">{{ i + 1 }}</span>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -104,6 +104,11 @@ export default {
       require: false,
       default: null,
     },
+    images: {
+      type: String,
+      require: false,
+      default: '',
+    },
   },
   data: () => ({
     players: [],
@@ -130,10 +135,10 @@ export default {
       else return require('~/assets/images/medal/medal-bronze.png')
     },
     getColor(gate, code) {
-      if (gate === 'and') return code ? 'rgba(50, 115, 219, 0.9)' : 'blue'
-      else if (gate === 'or') return code ? 'rgba(139, 195, 74, 0.9)' : 'green'
-      else if (gate === 'nor') return code ? 'rgba(219, 46, 28, 0.9)' : 'red'
-      else if (gate === 'not') return code ? 'rgba(92, 45, 122, 0.9)' : 'purple'
+      if (gate === 'and') return code ? 'rgba(50, 115, 219, 1)' : 'blue'
+      else if (gate === 'or') return code ? 'rgba(139, 195, 74, 1)' : 'green'
+      else if (gate === 'nor') return code ? 'rgba(219, 46, 28, 1)' : 'red'
+      else if (gate === 'not') return code ? 'rgba(92, 45, 122, 1)' : 'purple'
     },
     getCollection(gate) {
       const gateLabel = []
@@ -197,10 +202,13 @@ export default {
   }
   .other-num {
     width: 30px;
-    background: rgba(128, 128, 128, 0.3);
+    background: rgb(255, 255, 255);
+    border: 3px solid rgba(70, 70, 70, 0.8);
     height: 30px;
-    border-radius: 100px;
+    border-radius: 12px;
     color: rgb(70, 70, 70);
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 }
 </style>
