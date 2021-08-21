@@ -1,7 +1,27 @@
 <template>
   <div>
     <div class="background2"></div>
-    <div class="background" :style="`background-image: url(${require('~/assets/images/space/BG2.jpg')});`"></div>
+    <div
+      class="background"
+      :style="`background-image: url(${require('~/assets/images/space/BG2.jpg')});`"
+    >
+      <v-row v-if="$vuetify.breakpoint.mdAndUp" style="height: 70vh" justify="center" align="center">
+        <v-img
+          class="sun mr-15 ml-n15"
+          :src="require('~/assets/images/space/Sun.png')"
+          height="250"
+          width="250"
+          contain
+        ></v-img>
+        <v-img
+          class="saturn ml-15 mr-n15"
+          :src="require('~/assets/images/space/Saturn.png')"
+          height="250"
+          width="250"
+          contain
+        ></v-img>
+      </v-row>
+    </div>
     <v-row justify="center" align="center" no-gutters>
       <v-col class="fill-height">
         <Board :items="items" :images="gateImg" />

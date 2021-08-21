@@ -23,3 +23,29 @@
 .v-application {
     font-family: "Itim", sans-serif !important;
 }
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes halfRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+.sun {
+    animation: rotating 50s linear infinite;
+}
+
+.saturn {
+    animation: halfRotate 5s linear infinite;
+}
