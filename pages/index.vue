@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="background2"></div>
-    <div class="background"></div>
+    <div class="background" :style="`background-image: url(${require('~/assets/images/space/BG2.jpg')});`"></div>
     <v-row justify="center" align="center" no-gutters>
       <v-col class="fill-height">
         <Board :items="items" :images="gateImg" />
@@ -39,7 +39,6 @@ export default {
 
 <style lang="scss" scoped>
 .background {
-  background-image: url('/BG2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
