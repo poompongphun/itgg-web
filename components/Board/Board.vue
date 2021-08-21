@@ -201,7 +201,7 @@ export default {
     height: 40vh;
   }
   .other-num {
-    width: 30px;
+    min-width: 30px;
     background: rgb(255, 255, 255);
     border: 3px solid rgba(70, 70, 70, 0.8);
     height: 30px;
