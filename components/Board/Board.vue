@@ -90,6 +90,17 @@
                     {{ player.coin }} Tokens
                   </v-list-item-subtitle>
                 </v-list-item-content>
+
+                <v-list-item-action>
+                  <div>
+                    <v-chip color="primary" outlined style="cursor: pointer">
+                      IT {{ player.year }}
+                    </v-chip>
+                    <v-chip v-if="player.discord_id !== ''" color="success" outlined style="cursor: pointer">
+                      Verified
+                    </v-chip>
+                  </div>
+                </v-list-item-action>
               </v-list-item>
             </template>
           </v-list>

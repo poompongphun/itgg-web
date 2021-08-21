@@ -20,14 +20,11 @@
         <h2 class="py-4">
           {{ playerData.name }}
           <br>
-          <v-chip>IT {{ playerData.year }}</v-chip>
+          <v-chip color="primary" outlined>IT {{ playerData.year }}</v-chip>
           <v-chip v-if="playerData.discord_id !== ''" color="success" outlined>
             Verified
           </v-chip>
         </h2>
-        <!-- <v-avatar class="my-3" size="150" color="grey">
-          <v-img src="https://www.blexar.com/avatar.png" alt="alt" />
-        </v-avatar> -->
         <h1
           :class="`my-token rounded-xl ${getColor(
             playerData.house,
