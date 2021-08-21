@@ -1,5 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
+const title = process.env.npm_package_name || ''
+const description = process.env.npm_package_description || ''
+const images = '~/assets/background.jpg'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -11,13 +15,43 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - itgg',
-    title: 'itgg',
+    titleTemplate: 'ITGG | Infotech Gate Game',
+    title: 'ITGG',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: description,
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: title,
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: description,
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: images,
+      },
+      {
+        hid: 'og:image:secure_url',
+        property: 'og:image:secure_url',
+        content: images,
+      },
+      {
+        hid: 'og:image:alt',
+        property: 'og:image:alt',
+        content: title,
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

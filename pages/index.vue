@@ -5,7 +5,12 @@
       class="background"
       :style="`background-image: url(${require('~/assets/images/space/BG2.jpg')});`"
     >
-      <v-row v-if="$vuetify.breakpoint.mdAndUp" style="height: 70vh" justify="center" align="center">
+      <v-row
+        v-if="$vuetify.breakpoint.mdAndUp"
+        style="height: 70vh"
+        justify="center"
+        align="center"
+      >
         <v-img
           class="sun mr-15 ml-n15"
           :src="require('~/assets/images/space/Sun.png')"
@@ -42,6 +47,27 @@ export default {
   data: () => ({
     gateImg: '',
   }),
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: require('~/assets/background.jpg'),
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: require('~/assets/background.jpg'),
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'ITGG2021',
+        },
+      ],
+    }
+  },
   mounted() {
     this.gateImg = this.gateImages('not')
     // this.gateImg = this.gateImages(this.items[0].name)
