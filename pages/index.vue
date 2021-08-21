@@ -37,9 +37,10 @@
 
 <script>
 import Board from '~/components/Board/Board'
+const image = window.location.href + 'background.jpg'
 export default {
   components: { Board },
-  async asyncData({ $axios }) {
+  async asyncData({ $axios, req }) {
     const gate = await $axios.$get('https://itgg.herokuapp.com/')
     gate.sort((a, b) => b.coin - a.coin)
     return { items: gate }
@@ -53,12 +54,12 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: require('~/assets/background.jpg'),
+          content: image,
         },
         {
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
-          content: require('~/assets/background.jpg'),
+          content: image,
         },
         {
           hid: 'og:image:alt',
