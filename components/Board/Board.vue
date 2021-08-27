@@ -15,19 +15,88 @@
       style="backdrop-filter: blur(5px)"
     >
       <v-row class="pt-2 px-2" justify="space-between" no-gutters>
-        <v-btn color="purple" icon :disabled="tab == 0" @click="tab = 0">
+        <v-btn color="purple" icon :disabled="tab == 0 || isSearch" @click="tab = 0">
           <v-icon>mdi-arrow-left-bold</v-icon>
         </v-btn>
-        <v-btn
-          color="purple"
-          icon
-          :disabled="tab == 1 || players.length == 0"
-          @click="tab = 1"
-        >
-          <v-icon>mdi-arrow-right-bold</v-icon>
-        </v-btn>
+        <div>
+          <v-btn icon @click="isSearch = !isSearch">
+            <v-icon v-if="!isSearch">mdi-magnify</v-icon>
+            <v-icon v-else>mdi-magnify-close</v-icon>
+          </v-btn>
+          <v-btn
+            color="purple"
+            icon
+            :disabled="tab == 1 || players.length == 0 || isSearch"
+            @click="tab = 1"
+          >
+            <v-icon>mdi-arrow-right-bold</v-icon>
+          </v-btn>
+        </div>
       </v-row>
-      <v-tabs-items v-model="tab" style="background: none">
+      <v-expand-transition>
+        <div v-if="isSearch">
+          <v-text-field
+            v-model="search"
+            class="mx-5"
+            name="search"
+            color="purple"
+            placeholder="Search"
+            filled
+            rounded
+            dense
+            clearable
+            hide-details
+          >
+          </v-text-field>
+          <div v-if="loading" class="loading my-n3">
+            <v-progress-circular
+              indeterminate
+              color="purple"
+            ></v-progress-circular>
+          </div>
+          <v-list v-else-if="searchPlayer.length !== 0" style="background: none">
+            <template v-for="(player, i) in searchPlayer">
+              <v-list-item
+                :key="player.std_id"
+                class="mx-2 my-1 rounded-lg"
+                style="background-color: rgba(255, 255, 255, 0)"
+                @click="showPlayer(player)"
+              >
+                <v-list-item-avatar tile>
+                  <span class="other-num">{{ i + 1 }}</span>
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <h3>{{ player.name }}</h3>
+                  <v-list-item-subtitle>
+                    {{ player.coin }} Tokens
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+
+                <v-list-item-action>
+                  <div>
+                    <v-chip color="primary" outlined style="cursor: pointer">
+                      IT {{ player.year }}
+                    </v-chip>
+                    <v-chip
+                      v-if="player.discord_id !== ''"
+                      color="success"
+                      outlined
+                      style="cursor: pointer"
+                    >
+                      Verified
+                    </v-chip>
+                  </div>
+                </v-list-item-action>
+              </v-list-item>
+            </template>
+          </v-list>
+          <div v-else class="loading grey--text lighten-1 my-n3">
+            Not Found
+          </div>
+        </div>
+      </v-expand-transition>
+      <v-tabs-items v-show="!isSearch" v-model="tab" style="background: none">
         <v-tab-item>
           <v-list style="background: none">
             <template v-for="(item, i) in items">
@@ -96,7 +165,12 @@
                     <v-chip color="primary" outlined style="cursor: pointer">
                       IT {{ player.year }}
                     </v-chip>
-                    <v-chip v-if="player.discord_id !== ''" color="success" outlined style="cursor: pointer">
+                    <v-chip
+                      v-if="player.discord_id !== ''"
+                      color="success"
+                      outlined
+                      style="cursor: pointer"
+                    >
                       Verified
                     </v-chip>
                   </div>
@@ -132,7 +206,28 @@ export default {
     players: [],
     tab: 0,
     collection: null,
+    isSearch: false,
+    search: '',
+    searchPlayer: [],
+    timeout: null,
+    loading: false
   }),
+  watch: {
+    search(val) {
+      this.loading = true
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        this.$axios
+          .get(`/players?search=${val}`, {
+            progress: false,
+          })
+          .then((res) => {
+            this.searchPlayer = res.data
+            this.loading = false
+          })
+      }, 250)
+    }
+  },
   mounted() {
     this.getCollection(this.items)
   },
