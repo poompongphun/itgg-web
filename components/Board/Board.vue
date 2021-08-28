@@ -149,8 +149,9 @@
                 @click="showPlayer(player)"
               >
                 <v-list-item-avatar tile>
-                  <v-img v-if="i < 3" :src="getImages(i)"></v-img>
-                  <span v-else class="other-num">{{ i + 1 }}</span>
+                  <span v-if="i == 0">-</span>
+                  <v-img v-else-if="0 < i && i <= 3" :src="getImages(i-1)"></v-img>
+                  <span v-else class="other-num">{{ i }}</span>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
