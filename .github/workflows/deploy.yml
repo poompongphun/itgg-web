@@ -3,11 +3,11 @@ name: ci
 on:
   push:
     branches:
-      - main
+      - casino
       - master
   pull_request:
     branches:
-      - main
+      - casino
       - master
 
 jobs:
