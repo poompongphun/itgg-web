@@ -19,7 +19,7 @@
           <v-icon>mdi-arrow-left-bold</v-icon>
         </v-btn>
         <div>
-          <v-btn icon @click="isSearch = !isSearch">
+          <v-btn v-if="false" icon @click="isSearch = !isSearch">
             <v-icon v-if="!isSearch">mdi-magnify</v-icon>
             <v-icon v-else>mdi-magnify-close</v-icon>
           </v-btn>
@@ -119,7 +119,7 @@
                     {{ item.coin }} Tokens
                   </v-list-item-subtitle>
                 </v-list-item-content>
-                <v-list-item-action>
+                <v-list-item-action v-if="false">
                   <v-chip
                     color="rgb(120, 120, 120)"
                     outlined
@@ -237,7 +237,7 @@ export default {
       this.players = []
       this.tab = 1
       const player = await this.$axios.$get(
-        `/players?gate=${gate}&limit=1000`,
+        `/players?gate=${gate}&limit=1`,
         { progress: false }
       )
       this.players = player
