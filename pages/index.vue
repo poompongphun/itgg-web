@@ -89,7 +89,7 @@ export default {
       else if (gate === 'not') return '/gate/not.png'
     },
     async fetchEventsList() {
-      const updateData = await this.$axios.$get('/', { progess: false })
+      const updateData = await this.$axios.$get('/', { progress: false })
       updateData.sort((a, b) => b.coin - a.coin)
       this.$refs.gateBoard.getCollection(updateData)
       this.items = updateData
