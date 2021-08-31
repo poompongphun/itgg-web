@@ -29,7 +29,7 @@
     </div>
     <v-row justify="center" align="center" no-gutters>
       <v-col class="fill-height">
-        <Board :items="items" :images="gateImg" />
+        <Board ref="gateBoard" :items="items" :images="gateImg" />
       </v-col>
     </v-row>
   </div>
@@ -47,6 +47,7 @@ export default {
   },
   data: () => ({
     gateImg: '',
+    timer: '',
   }),
   head() {
     return {
@@ -69,9 +70,16 @@ export default {
       ],
     }
   },
+  created() {
+    this.fetchEventsList()
+    this.timer = setInterval(this.fetchEventsList, 30000)
+  },
   mounted() {
     this.gateImg = this.gateImages('not')
     // this.gateImg = this.gateImages(this.items[0].name)
+  },
+  beforeDestroy() {
+    this.cancelAutoUpdate()
   },
   methods: {
     gateImages(gate) {
@@ -79,6 +87,15 @@ export default {
       else if (gate === 'or') return '/gate/or.png'
       else if (gate === 'nor') return '/gate/nor.png'
       else if (gate === 'not') return '/gate/not.png'
+    },
+    async fetchEventsList() {
+      const updateData = await this.$axios.$get('/', { progess: false })
+      updateData.sort((a, b) => b.coin - a.coin)
+      this.$refs.gateBoard.getCollection(updateData)
+      this.items = updateData
+    },
+    cancelAutoUpdate() {
+      clearInterval(this.timer)
     },
   },
 }
