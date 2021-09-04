@@ -15,7 +15,12 @@
       style="backdrop-filter: blur(5px)"
     >
       <v-row class="pt-2 px-2" justify="space-between" no-gutters>
-        <v-btn color="purple" icon :disabled="tab == 0 || isSearch" @click="tab = 0">
+        <v-btn
+          color="purple"
+          icon
+          :disabled="tab == 0 || isSearch"
+          @click="tab = 0"
+        >
           <v-icon>mdi-arrow-left-bold</v-icon>
         </v-btn>
         <div>
@@ -54,7 +59,10 @@
               color="purple"
             ></v-progress-circular>
           </div>
-          <v-list v-else-if="searchPlayer.length !== 0" style="background: none">
+          <v-list
+            v-else-if="searchPlayer.length !== 0"
+            style="background: none"
+          >
             <template v-for="(player, i) in searchPlayer">
               <v-list-item
                 :key="player.std_id"
@@ -91,9 +99,7 @@
               </v-list-item>
             </template>
           </v-list>
-          <div v-else class="loading grey--text lighten-1 my-n3">
-            Not Found
-          </div>
+          <div v-else class="loading grey--text lighten-1 my-n3">Not Found</div>
         </div>
       </v-expand-transition>
       <v-tabs-items v-show="!isSearch" v-model="tab" style="background: none">
@@ -150,7 +156,10 @@
               >
                 <v-list-item-avatar tile>
                   <span v-if="i == 0">-</span>
-                  <v-img v-else-if="0 < i && i <= 3" :src="getImages(i-1)"></v-img>
+                  <v-img
+                    v-else-if="0 < i && i <= 3"
+                    :src="getImages(i - 1)"
+                  ></v-img>
                   <span v-else class="other-num">{{ i }}</span>
                 </v-list-item-avatar>
 
@@ -211,7 +220,7 @@ export default {
     search: '',
     searchPlayer: [],
     timeout: null,
-    loading: false
+    loading: false,
   }),
   watch: {
     search(val) {
@@ -227,7 +236,7 @@ export default {
             this.loading = false
           })
       }, 250)
-    }
+    },
   },
   mounted() {
     this.getCollection(this.items)
@@ -260,7 +269,7 @@ export default {
       const gateColor = []
       gate.forEach((data) => {
         gateLabel.push(data.name)
-        gateToken.push(data.coin)
+        gateToken.push(data.coin >= 0 ? data.coin : 0)
         gateColor.push(this.getColor(data.name, true))
       })
       this.collection = {
